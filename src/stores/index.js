@@ -1,22 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './routers'
-Vue.config.productionTip = false
-// 利用vuex实现组件的状态管理
-// vuex（store状态管理）的核心概念如下：
-// 1、state——状态，获取的话都是获取state上面的东西内容，理解为组件中的data
-// 2、getters——理解为组件里面的computed，放一些复杂的逻辑，改变简单的内容，进一步处理state中的数据
-// 3、mutations——理解为组件中的methods，放对应的方法，专门用来修改state中的内容数据，在mutations中的方法是同步的，记住只能是mutations才能修改state中的内容
-// 4、actions——操作mutations，专门负责做异步操作
-// 小结：
-//  state和getters都是用来获取数据，mutations是往里加入相关的方法的，类似于methods
-// 使用方法：
-// 1、安装vuex，
-// 2、创建一个仓库store，
-// vuex的使用，引入vuex
-// import Vuex from 'vuex';
-// // 创建数据池store(仓库)
-// Vue.use(Vuex);
+// 模块化开发
+import Vue from 'vue';
+// 这里是专门用来放置stores中的内容的
+import Vuex from 'vuex';
+// 引入模块
+import cart from './carlist.js';
+// 创建数据池store(仓库)
+Vue.use(Vuex);
 // const store=new Vuex.Store({
 //   state:{
 //     carlist:[{
@@ -79,11 +68,10 @@ Vue.config.productionTip = false
 //     }
 //   }
 // });
-import store from './stores'
-new Vue({
-  el:"#app",
-  router,
-  // 数据池挂载在这里，便于后面能调用的到
-  store,
-  render: h => h(App),
-})
+// export default store;
+// 将模块化用到极致，每一个内容都对应的模块化
+export default new Vuex.Store({
+    modules:{
+        cart
+    }
+});
